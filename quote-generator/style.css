@@ -45,13 +45,16 @@ button {
 }
 
 .quote__text {
+  display: inline;
+  margin-left: 12px;
+
   font-size: 44px;
   font-weight: bold;
 }
 
-.quote__text i {
+.quote__text-quotes {
   position: relative;
-  top: 6px;
+  top: 4px;
 
   font-size: 64px;
 }
