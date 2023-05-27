@@ -1,9 +1,23 @@
 import { config } from "./config.js";
 
 const gallery = document.querySelector(".gallery");
+const loader = document.querySelector(".loader");
 
-const apiUrl = "https://api.pexels.com/v1/curated?page=13&per_page=15";
-let morePhotosAvailable = true;
+let page = 1;
+let imagesToFetch = 5;
+let ready = false;
+let imagesLoaded = 0;
+let totalImages = 0;
+
+const imageLoaded = () => {
+  imagesLoaded++;
+
+  if (imagesLoaded === totalImages) {
+    ready = true;
+    imagesToFetch = 15;
+    loader.hidden = true;
+  }
+};
 
 const setAttributes = (element, attributes) => {
   for (const key in attributes) {
@@ -12,6 +26,9 @@ const setAttributes = (element, attributes) => {
 };
 
 const displayPhotos = (photos) => {
+  imagesLoaded = 0;
+  totalImages = photos.length;
+
   photos.forEach((photo) => {
     const item = document.createElement("a");
     setAttributes(item, {
@@ -26,27 +43,43 @@ const displayPhotos = (photos) => {
       title: photo.alt,
     });
 
+    image.addEventListener("load", imageLoaded);
+
     item.appendChild(image);
     gallery.appendChild(item);
   });
 };
 
 const getPhotos = async () => {
+  const apiUrl = `https://api.pexels.com/v1/curated?page=${page}&per_page=${imagesToFetch}`;
+
   try {
     const res = await fetch(apiUrl, {
       headers: {
         Authorization: config.ACCESS_KEY,
       },
     });
-    const data = await res.json();
-    displayPhotos(data.photos);
 
-    if (!data.next_page) {
-      morePhotosAvailable = false;
+    const data = await res.json();
+
+    if (data.next_page) {
+      page++;
     }
+
+    displayPhotos(data.photos);
   } catch (error) {
     // Catch error here
   }
 };
+
+window.addEventListener("scroll", () => {
+  if (
+    window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 &&
+    ready
+  ) {
+    ready = false;
+    getPhotos();
+  }
+});
 
 getPhotos();
