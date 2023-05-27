@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Bebas Neue", sans-serif;
+  height: 300vh;
+}
+
+.title {
+  font-size: 48px;
+  letter-spacing: 5px;
+  /* You actually don't need this */
+  text-transform: uppercase;
+  text-align: center;
+
+  margin: 25px auto 15px;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.loader__img {
+  position: fixed;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+}
