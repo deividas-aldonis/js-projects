@@ -23,6 +23,8 @@ async function getQuote() {
     quoteText.textContent = quote;
     quoteAuthor.textContent = author;
   } catch (err) {
+    quoteText.textContent = err.message;
+    quoteAuthor.textContent = err.stack;
   } finally {
     complete();
   }
