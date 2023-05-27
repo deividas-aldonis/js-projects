@@ -6,7 +6,6 @@
 
 body {
   font-family: "Bebas Neue", sans-serif;
-  height: 300vh;
 }
 
 .title {
@@ -16,7 +15,7 @@ body {
   text-transform: uppercase;
   text-align: center;
 
-  margin: 25px auto 15px;
+  margin: 25px 0 15px;
 }
 
 .loader {
@@ -29,4 +28,47 @@ body {
   position: fixed;
   inset: 50%;
   transform: translate(-50%, -50%);
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 25%;
+}
+
+.gallery img {
+  width: 100%;
+}
+
+@media screen and (max-width: 678px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .gallery {
+    margin: 10px 20%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .gallery {
+    margin: 10px 15%;
+    gap: 5px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .title {
+    margin: 25px 10px 15px;
+  }
+
+  .gallery {
+    margin: 10px;
+    gap: 5px;
+  }
 }
