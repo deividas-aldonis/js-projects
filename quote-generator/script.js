@@ -14,7 +14,6 @@ async function getQuote() {
   loading();
 
   try {
-    // proxy to fix CORS issues
     const res = await fetch("http://127.0.0.1:3000/random");
     const data = await res.json();
 
