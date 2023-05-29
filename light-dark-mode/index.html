@@ -5,8 +5,313 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Light Dark Mode</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;900&family=Source+Serif+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="theme-switcher-container">Hello</div>
+    <main class="container">
+      <article class="article">
+        <!-- Article intro -->
+        <div class="article__intro">
+          <h1 class="article__title">
+            Thought experiment in the National Library of Thailand
+          </h1>
+          <div class="article__details">
+            <img
+              class="article__author-thumbnail-image"
+              src="images/thumbnail.jpg"
+              alt="Profile thumbnail picture"
+            />
+            <div class="article__details-info">
+              <div class="article__author-links">
+                <a href="#" class="article__author-name">Emily M.Bender</a>
+                <a class="article__author-follow-link" href="#">Follow</a>
+              </div>
+              <div class="article__details-time">
+                <span class="article__time-to-read">6 min read</span>
+                <span class="article__time-posted-ago">4 days ago</span>
+              </div>
+            </div>
+          </div>
+          <!-- End article intro -->
+        </div>
+        <!-- Article content -->
+        <div class="article__content">
+          <p>
+            With the advent of ChatGPT, large language models (LLMs) went from a
+            relatively niche topic to something that many, many people have been
+            exposed to. ChatGPT is presented as an entertaining system to chat
+            with, a dialogue partner, and (through Bing) a search interface.*
+            But fundamentally, it is a language model, that is, a system trained
+            to produce likely sequences of words based on the distributions in
+            its training data. Because it models those distributions very
+            closely, it is good at spitting out plausible sounding text, in
+            different styles. But, as always, if this text makes sense it’s
+            because we, the reader, are making sense of it.
+          </p>
+          <p>
+            In
+            <a href="#"
+              >Climbing Towards NLU: On Meaning, Form, and Understanding in the
+              Age of Data</a
+            >
+            (2020) Alexander Koller and I lay out the argument that such systems
+            can’t possibly learn meaning (either “understand” their input or
+            express communicative intent) because their training regimen
+            consists of only the form of language. The distinction between form
+            and meaning in linguistic systems is subtle, not least because once
+            we (humans!) have learned a language, as soon as we see or hear any
+            form in that language, we immediately access the meaning as well.
+          </p>
+          <p>
+            But we can only do that because we have learned the linguistic
+            system to which the form belongs. For our first languages, that
+            learning took place in socially situated, embodied interactions that
+            allowed us to get an initial start on the linguistic system and the
+            extended through more socially situated, embodied interactions,
+            including some in which we used what we already knew about the
+            language to learn more. For second languages, we might have started
+            with instruction that explicitly leveraged our first language
+            skills.
+          </p>
+          <p>
+            Nonetheless, when we see a language model producing seemingly
+            coherent output and we think about its training data, if those data
+            come from a language we speak, it’s difficult to keep in focus the
+            fact that the computer is only manipulating the form — and the form
+            doesn’t “carry” the meaning, except to someone who knows the
+            linguistic system.
+          </p>
+          <div class="dot-separator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <p>
+            To try to bring the difference between form and meaning into focus,
+            I like to lead people through a thought experiment. Think of a
+            language that you do not speak which is furthermore written in a
+            non-ideographic writing system that you don’t read. For many (but by
+            no means all) people reading this post, Thai might fit that
+            description, so I’ll use Thai in this example.
+          </p>
+          <p>
+            Imagine you are in the
+            <a href="#">National Library of Thailand</a> (Thai wikipedia page).
+            You have access to all the books in that library, except any that
+            have illustrations or any writing not in Thai. You have unlimited
+            time, and your physical needs are catered to, but no people to
+            interact with. Could you learn to understand written Thai? If so,
+            how would you achieve that? (Please ponder for a moment, before
+            reading on.)
+          </p>
+          <figure class="article__image-container">
+            <img
+              class="article__image"
+              src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*Sn8FDfluZp8ESCxJAcYz6A.jpeg"
+              alt="The National Library of Thailand"
+            />
+            <figcaption class="article__image-caption">
+              The National Library of Thailand, an ornate white building, with
+              trees, including one with pink flowers in the foreground. Photo
+              credit: Pat Roengpitya
+            </figcaption>
+          </figure>
+          <p>
+            I’ve had this conversation with many many people. Some ideas that
+            have come up:
+          </p>
+          <ol>
+            <li>
+              <p>
+                Look for an illustrated encyclopedia. [Sorry, I removed all
+                books with photos, remember?]
+              </p>
+            </li>
+            <li>
+              <p>
+                Find scientific articles which might have English loanwords
+                spelled out in English orthography. [Those are gone too. I was
+                thorough.]
+              </p>
+            </li>
+            <li>
+              <p>
+                Patiently collate a list of all strings, locating the most
+                frequent ones, and deduce that those are function words, like
+                the equivalents of and, the, or to, or whichever elements Thai
+                grammaticalizes. [Thai actually doesn’t use white space
+                delimiters for words, so this strategy would be extra
+                challenging. If you succeeded, you’d be succeeding because you
+                were bringing additional knowledge to the situation, something
+                which an LLM doesn’t have. Also, the function words aren’t going
+                to help you much in terms of the actual content.]
+              </p>
+            </li>
+            <li>
+              <p>
+                Unlimited time and yummy Thai food? I’d just sit back and enjoy
+                that. [Great! But also, not going to lead to learning Thai.]
+              </p>
+            </li>
+            <li>
+              <p>
+                Hunt around until you find something that from its format is
+                obviously a translation of a book you already know well in
+                another language. [Again, bringing in external information.]
+              </p>
+            </li>
+            <li>
+              <p>
+                Look at the way the books are organized in the library, and find
+                words (substrings) that appear disproportionate in each section
+                (compared to the others). Deduce that these are the words that
+                have to do with the topic of that section. [That would be an
+                interesting way to partition the vocabulary for sure, but how
+                would you actually figure out what any of the words mean?]
+              </p>
+            </li>
+          </ol>
+          <div class="dot-separator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <p>
+            Without any way to relate the texts you are looking at to anything
+            outside language, i.e. to hypotheses about their communicative
+            intent, you can’t get off the ground with this task. Most of the
+            strategies above involve pulling in additional information that
+            would let you make those hypotheses — something beyond the strict
+            form of the language.
+          </p>
+          <p>
+            You could, if you didn’t get fed up, get really good as knowing what
+            a reasonable string of Thai “looks like”. You could maybe even write
+            something that a Thai speaker could make sense of. But this isn’t
+            the same thing as “knowing Thai”. If you wanted to learn from the
+            knowledge stored in that library, you still wouldn’t have access.
+          </p>
+          <figure class="article__image-container">
+            <img
+              class="article__image"
+              src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*a6yqhP7kfhNO-2sveeYpmw.jpeg"
+              alt="Scale architectural model of the National Library of Thailand"
+            />
+            <figcaption class="article__image-caption">
+              Scale architectural model of the National Library of Thailand.
+              Photo by Pat Roengpitya.
+            </figcaption>
+          </figure>
+          <div class="dot-separator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <p>
+            When you read the output of ChatGPT, it’s important to remember that
+            despite its apparent fluency and despite its ability to create
+            confident sounding strings that are on topic and seem like answers
+            to your questions, it’s only manipulating linguistic form. It’s not
+            understanding what you asked nor what it’s answering, let alone
+            “reasoning” from your question + its “knowledge” to come up with the
+            answer. The only knowledge it has is knowledge of distribution of
+            linguistic form.
+          </p>
+          <p>
+            It doesn’t matter how “intelligent” it is — it can’t get to meaning
+            if all it has access to is form. But also: it’s not “intelligent”.
+            Our only evidence for its “intelligence” is the apparent coherence
+            of its output. But we’re the ones doing all the meaning making
+            there, as we make sense of it.
+          </p>
+          <div class="dot-separator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <p class="italic">
+            * This is in fact a really bad idea. Chirag Shah and I lay out the
+            reasons in <a href="#">Situating Search</a> (CHIIR 2022) and
+            <a href="#">this op-ed</a>.
+          </p>
+          <div class="dot-separator">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+        <p>
+          Postscript: After this was shared via Twitter and Mastodon, several
+          folks on those sites replied by saying “This is just Searle’s Chinese
+          Room experiment.” Here’s how it’s different:
+        </p>
+        <p>
+          I’m not asking whether a computer could in principle be programmed to
+          understand. (In fact, by the definition of understanding in Bender &
+          Koller 2020, when you ask a virtual assistant to set a timer, turn on
+          a light, etc and it does, it has understood.) I’m asking whether any
+          entity (person, computer, hyperintelligent deep-sea octopus), exposed
+          only to form, could *learn* meaning i.e. learn to understand.
+        </p>
+        <p>
+          Searle’s thought experiment presupposes the linguistic rules are
+          already to hand, and asks whether deploying them amounts to
+          understanding (and from there makes conclusions about the possibility
+          of artificial intelligence).
+        </p>
+        <p>We already pointed this out in Bender & Koller 2020:</p>
+        <figure class="article__image-container">
+          <img
+            class="article__image"
+            src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*V-OSlU6uAp-J47seydLkSQ.png"
+            alt="Screenshot from Bender & Koller 2020, 4th page, 1st column, third paragraph, beginning “Searle’s thought experiment”."
+          />
+          <figcaption class="article__image-caption">
+            Screenshot from Bender & Koller 2020, 4th page, 1st column, third
+            paragraph, beginning “Searle’s thought experiment”. Source:
+            <a href="#">https://aclanthology.org/2020.acl-main.463.pdf</a>
+          </figcaption>
+        </figure>
+        <p>
+          For me intelligence is irrelevant/orthogonal: The octopus and the
+          occupant of the National Library of Thailand are posited to be
+          intelligent. A language model is not. The connection to intelligences
+          only comes in because people are asserting intelligence of the GPT
+          models (“sparks of AGI”, “LaMDA is sentient”, “slightly conscious”,
+          yadda yadda) on the basis of their linguistic output. The National
+          Library of Thailand thought experiment is meant to show that for the
+          parlour trick that it is.
+        </p>
+        <p>
+          In other words, I’m writing in the context of 2019–2023 where it has
+          become very clear that we have to guard against our tendency to
+          attribute a mind behind the words, once the words are fluent enough.
+        </p>
+        <!-- End article content -->
+      </article>
+    </main>
+    <div class="article__footer">
+      <img
+        class="article__author-thumbnail-image"
+        src="images/thumbnail.jpg"
+        alt="Profile thumbnail picture"
+      />
+      <span class="article__written-by">Written by Emily M.Bender</span>
+      <span class="article__author-followers">1.5K Followers</span>
+      <p>
+        Professor, Linguistics, University of Washington// Faculty Director,
+        Professional MS Program in Computational Linguistics (CLMS)
+        <a href="#">faculty.washington.edu/ebender</a>
+      </p>
+    </div>
+  </body>
 </html>
