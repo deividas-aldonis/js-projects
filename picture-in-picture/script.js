@@ -27,7 +27,7 @@ startCaptureBtn.addEventListener("click", async () => {
   }
 });
 
-stopCaptureBtn.addEventListener("click", () => {
+stopCaptureBtn.addEventListener("click", async () => {
   let tracks = video.srcObject.getTracks();
   tracks.forEach((track) => track.stop());
   video.srcObject = null;
@@ -35,6 +35,14 @@ stopCaptureBtn.addEventListener("click", () => {
   stopCaptureBtn.disabled = true;
   pipBtn.disabled = true;
   console.error("");
+
+  try {
+    if (document.pictureInPictureElement) {
+      await document.exitPictureInPicture();
+    }
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 pipBtn.addEventListener("click", async () => {
