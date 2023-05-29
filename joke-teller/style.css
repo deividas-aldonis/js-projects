@@ -5,15 +5,69 @@
 }
 
 body {
-  font-family: "Courier New", Courier, monospace;
-
-  background-color: whitesmoke;
-  color: whitesmoke;
+  background-color: #45badd;
 }
 
-.voice-option {
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("robot.gif");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.joke-btn {
+  font-family: Courier, monospace;
+  font-size: 20px;
+  color: #fff;
+  background-color: #ff3482;
+  padding: 12px;
+  margin: 10px;
+  max-width: 400px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  box-shadow: 5px 5px 30px 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease-in-out;
   cursor: pointer;
-  padding: 10px;
-  background-color: #333;
-  margin-bottom: 10px;
+  word-break: break-word;
+  user-select: none;
+}
+
+.joke-btn:hover,
+.joke-btn:focus {
+  box-shadow: 0px 0px 10px 10px rgba(255, 52, 130, 0.5);
+  transform: translateY(-2px);
+}
+
+.joke-btn:focus {
+  outline: 2px solid #fff;
+}
+
+.joke-btn:disabled,
+.joke-btn[disabled] {
+  box-shadow: 5px 5px 30px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(0px);
+  filter: brightness(30%);
+  cursor: default;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    background-position: left center;
+  }
+
+  .joke-btn {
+    font-size: 24px;
+    box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+  }
+  .joke-btn:disabled,
+  .joke-btn[disabled] {
+    box-shadow: 2px 2px 20px 10px rgba(0, 0, 0, 0.2);
+  }
 }
