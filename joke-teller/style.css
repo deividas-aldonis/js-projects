@@ -3,3 +3,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: "Courier New", Courier, monospace;
+
+  background-color: whitesmoke;
+  color: whitesmoke;
+}
+
+.voice-option {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #333;
+  margin-bottom: 10px;
+}
