@@ -16,7 +16,10 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="theme-switcher-container">Hello</div>
+    <div class="theme-switcher-container">
+      <img class="icon hidden" src="images/sun.svg" alt="Sun icon" />
+      <img class="icon hidden" src="images/moon.svg" alt="Moon icon" />
+    </div>
     <main class="container">
       <article class="article">
         <!-- Article intro -->
@@ -116,7 +119,7 @@
           <figure class="article__image-container">
             <img
               class="article__image"
-              src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*Sn8FDfluZp8ESCxJAcYz6A.jpeg"
+              src="images/national-library-thailand.webp"
               alt="The National Library of Thailand"
             />
             <figcaption class="article__image-caption">
@@ -203,7 +206,7 @@
           <figure class="article__image-container">
             <img
               class="article__image"
-              src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*a6yqhP7kfhNO-2sveeYpmw.jpeg"
+              src="images/architectural-model.webp"
               alt="Scale architectural model of the National Library of Thailand"
             />
             <figcaption class="article__image-caption">
@@ -248,70 +251,74 @@
             <div class="dot"></div>
             <div class="dot"></div>
           </div>
+          <p>
+            Postscript: After this was shared via Twitter and Mastodon, several
+            folks on those sites replied by saying “This is just Searle’s
+            Chinese Room experiment.” Here’s how it’s different:
+          </p>
+          <p>
+            I’m not asking whether a computer could in principle be programmed
+            to understand. (In fact, by the definition of understanding in
+            Bender & Koller 2020, when you ask a virtual assistant to set a
+            timer, turn on a light, etc and it does, it has understood.) I’m
+            asking whether any entity (person, computer, hyperintelligent
+            deep-sea octopus), exposed only to form, could *learn* meaning i.e.
+            learn to understand.
+          </p>
+          <p>
+            Searle’s thought experiment presupposes the linguistic rules are
+            already to hand, and asks whether deploying them amounts to
+            understanding (and from there makes conclusions about the
+            possibility of artificial intelligence).
+          </p>
+          <p>We already pointed this out in Bender & Koller 2020:</p>
+          <figure class="article__image-container">
+            <img
+              class="article__image"
+              src="images/screenshot.webp"
+              alt="Screenshot from Bender & Koller 2020, 4th page, 1st column, third paragraph, beginning “Searle’s thought experiment”."
+            />
+            <figcaption class="mb-40 article__image-caption">
+              Screenshot from Bender & Koller 2020, 4th page, 1st column, third
+              paragraph, beginning “Searle’s thought experiment”. Source:
+              <a href="#">https://aclanthology.org/2020.acl-main.463.pdf</a>
+            </figcaption>
+          </figure>
+          <p>
+            For me intelligence is irrelevant/orthogonal: The octopus and the
+            occupant of the National Library of Thailand are posited to be
+            intelligent. A language model is not. The connection to
+            intelligences only comes in because people are asserting
+            intelligence of the GPT models (“sparks of AGI”, “LaMDA is
+            sentient”, “slightly conscious”, yadda yadda) on the basis of their
+            linguistic output. The National Library of Thailand thought
+            experiment is meant to show that for the parlour trick that it is.
+          </p>
+          <p>
+            In other words, I’m writing in the context of 2019–2023 where it has
+            become very clear that we have to guard against our tendency to
+            attribute a mind behind the words, once the words are fluent enough.
+          </p>
         </div>
-        <p>
-          Postscript: After this was shared via Twitter and Mastodon, several
-          folks on those sites replied by saying “This is just Searle’s Chinese
-          Room experiment.” Here’s how it’s different:
-        </p>
-        <p>
-          I’m not asking whether a computer could in principle be programmed to
-          understand. (In fact, by the definition of understanding in Bender &
-          Koller 2020, when you ask a virtual assistant to set a timer, turn on
-          a light, etc and it does, it has understood.) I’m asking whether any
-          entity (person, computer, hyperintelligent deep-sea octopus), exposed
-          only to form, could *learn* meaning i.e. learn to understand.
-        </p>
-        <p>
-          Searle’s thought experiment presupposes the linguistic rules are
-          already to hand, and asks whether deploying them amounts to
-          understanding (and from there makes conclusions about the possibility
-          of artificial intelligence).
-        </p>
-        <p>We already pointed this out in Bender & Koller 2020:</p>
-        <figure class="article__image-container">
-          <img
-            class="article__image"
-            src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*V-OSlU6uAp-J47seydLkSQ.png"
-            alt="Screenshot from Bender & Koller 2020, 4th page, 1st column, third paragraph, beginning “Searle’s thought experiment”."
-          />
-          <figcaption class="article__image-caption">
-            Screenshot from Bender & Koller 2020, 4th page, 1st column, third
-            paragraph, beginning “Searle’s thought experiment”. Source:
-            <a href="#">https://aclanthology.org/2020.acl-main.463.pdf</a>
-          </figcaption>
-        </figure>
-        <p>
-          For me intelligence is irrelevant/orthogonal: The octopus and the
-          occupant of the National Library of Thailand are posited to be
-          intelligent. A language model is not. The connection to intelligences
-          only comes in because people are asserting intelligence of the GPT
-          models (“sparks of AGI”, “LaMDA is sentient”, “slightly conscious”,
-          yadda yadda) on the basis of their linguistic output. The National
-          Library of Thailand thought experiment is meant to show that for the
-          parlour trick that it is.
-        </p>
-        <p>
-          In other words, I’m writing in the context of 2019–2023 where it has
-          become very clear that we have to guard against our tendency to
-          attribute a mind behind the words, once the words are fluent enough.
-        </p>
+
         <!-- End article content -->
       </article>
     </main>
-    <div class="article__footer">
-      <img
-        class="article__author-thumbnail-image"
-        src="images/thumbnail.jpg"
-        alt="Profile thumbnail picture"
-      />
-      <span class="article__written-by">Written by Emily M.Bender</span>
-      <span class="article__author-followers">1.5K Followers</span>
-      <p>
-        Professor, Linguistics, University of Washington// Faculty Director,
-        Professional MS Program in Computational Linguistics (CLMS)
-        <a href="#">faculty.washington.edu/ebender</a>
-      </p>
+    <div class="article__footer-container">
+      <div class="article__footer">
+        <img
+          class="article__author-thumbnail-image"
+          src="images/thumbnail.jpg"
+          alt="Profile thumbnail picture"
+        />
+        <span class="article__written-by">Written by Emily M.Bender</span>
+        <span class="article__author-followers">1.5K Followers</span>
+        <p>
+          Professor, Linguistics, University of Washington// Faculty Director,
+          Professional MS Program in Computational Linguistics (CLMS)
+          <a href="#">faculty.washington.edu/ebender</a>
+        </p>
+      </div>
     </div>
   </body>
 </html>
