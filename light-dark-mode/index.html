@@ -11,14 +11,18 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;900&family=Source+Serif+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="normalize.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
     <div class="theme-switcher-container">
-      <img class="icon hidden" src="images/sun.svg" alt="Sun icon" />
-      <img class="icon hidden" src="images/moon.svg" alt="Moon icon" />
+      <img
+        id="theme-icon"
+        class="icon hidden"
+        src="images/sun.svg"
+        alt="Theme icon"
+      />
     </div>
     <main class="container">
       <article class="article">
@@ -122,7 +126,7 @@
               src="images/national-library-thailand.webp"
               alt="The National Library of Thailand"
             />
-            <figcaption class="article__image-caption">
+            <figcaption class="mb-40 article__image-caption">
               The National Library of Thailand, an ornate white building, with
               trees, including one with pink flowers in the foreground. Photo
               credit: Pat Roengpitya
