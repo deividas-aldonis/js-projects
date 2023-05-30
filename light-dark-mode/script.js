@@ -15,6 +15,7 @@ function setTheme(currentTheme) {
 function saveTheme(currentTheme) {
   localStorage.setItem("theme", currentTheme);
 }
+
 function getTheme() {
   const theme = document.documentElement.getAttribute("data-theme");
 
@@ -32,6 +33,7 @@ function setIcon(theme) {
   } else {
     themeIcon.src = "images/sun.svg";
   }
+
   themeIcon.classList.remove("hidden");
 }
 
