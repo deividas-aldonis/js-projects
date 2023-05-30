@@ -1,19 +1,17 @@
 const themeIcon = document.getElementById("theme-icon");
 
+themeIcon.addEventListener("click", toggleTheme);
+
 function toggleTheme() {
   const previousTheme = getTheme();
   const currentTheme = previousTheme === "light" ? "dark" : "light";
   setTheme(currentTheme);
 }
 
-function setTheme(currentTheme) {
-  document.documentElement.setAttribute("data-theme", currentTheme);
-  setIcon(currentTheme);
-  saveTheme(currentTheme);
-}
-
-function saveTheme(currentTheme) {
-  localStorage.setItem("theme", currentTheme);
+function setTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+  setIcon(theme);
+  localStorage.setItem("theme", theme);
 }
 
 function getTheme() {
@@ -28,17 +26,9 @@ function getTheme() {
 }
 
 function setIcon(theme) {
-  if (theme === "light") {
-    themeIcon.src = "images/moon.svg";
-  } else {
-    themeIcon.src = "images/sun.svg";
-  }
-
+  const iconPath = `images/${theme === "light" ? "moon" : "sun"}.svg`;
+  themeIcon.src = iconPath;
   themeIcon.classList.remove("hidden");
 }
 
-themeIcon.addEventListener("click", toggleTheme);
-
-window.addEventListener("load", () => {
-  setIcon(getTheme());
-});
+setIcon(getTheme());
