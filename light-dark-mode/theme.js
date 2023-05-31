@@ -1,7 +1,3 @@
-function setTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-}
-
 (function () {
   // Check if theme was saved in localStorage.
   const theme = localStorage.getItem("theme");
@@ -15,7 +11,7 @@ function setTheme(theme) {
   else if (theme) {
     // Check if theme name is "light" or "dark"
     if (theme === "dark" || "light") {
-      setTheme(theme);
+      document.documentElement.setAttribute("data-theme", theme);
     }
     // Some kind of error, theme name should be "light" or "dark"
     else {
