@@ -3,7 +3,7 @@
 }
 
 body {
-  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
 }
 
@@ -16,10 +16,12 @@ body {
   background-position: bottom center;
 }
 
+/* Hamburger menu button */
 .menu-btn {
   position: fixed;
   top: 0;
   right: 0;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,7 +39,7 @@ body {
   width: 35px;
   height: 2px;
   margin-bottom: 8px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   transition: all 0.2s ease-out;
 }
 
@@ -56,4 +58,73 @@ body {
 
 .menu-btn.open .bar-3 {
   transform: rotate(45deg) translate(-6.5px, -8px);
+}
+
+/* Menu and the slides */
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-color: rgb(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+  width: 100%;
+  font-size: 2rem;
+  color: rgb(255, 255, 255);
+  backdrop-filter: blur(10.2px);
+  -webkit-backdrop-filter: blur(10.2px);
+  transform: translateX(-100%);
+  transition: 0.3s ease-out;
+  user-select: none;
+}
+
+.menu.animate .slide {
+  transform: translateX(0);
+}
+
+.menu.animate .slide-1 {
+  transition-delay: 0s;
+}
+
+.menu.animate .slide-2 {
+  transition-delay: 0.2s;
+}
+
+.menu.animate .slide-3 {
+  transition-delay: 0.4s;
+}
+
+.menu.animate .slide-4 {
+  transition-delay: 0.6s;
+}
+.menu.animate .slide-5 {
+  transition-delay: 0.8s;
+}
+
+.slide-1 {
+  background-color: rgb(215, 84, 84, 0.8);
+  transition-delay: 0.8s;
+}
+.slide-2 {
+  background-color: rgb(104, 133, 104, 0.8);
+  transition-delay: 0.6s;
+}
+.slide-3 {
+  background-color: rgb(66, 66, 110, 0.8);
+  transition-delay: 0.4s;
+}
+.slide-4 {
+  background-color: rgb(128, 0, 128, 0.8);
+  transition-delay: 0.2s;
+}
+.slide-5 {
+  background-color: rgb(197, 171, 161, 0.8);
+  transition-delay: 0s;
 }
