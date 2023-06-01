@@ -8,35 +8,44 @@ const playBtn = document.querySelector(".play-btn");
 const pauseBtn = document.querySelector(".pause-btn");
 const sliderContainer = document.querySelector(".slider-container");
 const slider = document.querySelector(".slider");
+const previousSongBtn = document.querySelector(".previous-btn");
+const nextSongBtn = document.querySelector(".next-btn");
 
 const songs = [
   {
     name: "Another One Bites The Dust",
     artist: "Queen",
     imageSrc: "images/another-one-bites-the-dust.jpg",
-    songSrc: "music/Another One Bites The Dust.mp3",
+    songSrc: "music/another-one-bites-the-dust.mp3",
   },
   {
     name: "Drive My Car",
     artist: "The Beatles",
     imageSrc: "images/drive-my-car.jpg",
-    songSrc: "music/Drive My Car.mp3",
+    songSrc: "music/drive-my-car.mp3",
   },
   {
     name: "Life is a Highway",
     artist: "Rascal Flatts",
     imageSrc: "images/life-is-a-highway.jpg",
-    songSrc: "music/Life is a Highway.mp3",
+    songSrc: "music/life-is-a-highway.mp3",
   },
 ];
 
-let currentSong = 2;
+let currentSong = 0;
 
 function displaySong() {
   const { name, artist, imageSrc } = songs[currentSong];
   songImage.src = imageSrc;
   songName.textContent = name;
   songArtist.textContent = artist;
+
+  const songDuration = parseInt(song.duration);
+
+  const minutes = formatTime(parseInt(songDuration / 60));
+  const seconds = formatTime(songDuration % 60);
+  setTime(songTimeGoing, "00", "00");
+  setTime(songTimeLeft, minutes, seconds);
 }
 
 function formatTime(time) {
@@ -51,8 +60,24 @@ function setSlider(width) {
   slider.style.width = width + "%";
 }
 
-song.addEventListener("timeupdate", function () {
+function hidePlayBtn() {
+  playBtn.hidden = true;
+  pauseBtn.hidden = false;
+}
+
+function hidePauseBtn() {
+  playBtn.hidden = false;
+  pauseBtn.hidden = true;
+}
+
+song.addEventListener("loadedmetadata", (e) => {
+  displaySong();
+});
+
+song.addEventListener("timeupdate", async function (e) {
   const duration = parseInt(song.duration);
+  if (!duration) return;
+
   const currentTime = parseInt(song.currentTime);
   const timeLeft = duration - currentTime;
 
@@ -66,21 +91,42 @@ song.addEventListener("timeupdate", function () {
   const timeGoingMinutes = formatTime(parseInt(currentTime / 60));
   setTime(songTimeGoing, timeGoingMinutes, timeGoingSeconds);
 
-  // Set slider
   const sliderWidth = (currentTime * 100) / duration;
   setSlider(sliderWidth);
 });
 
 playBtn.addEventListener("click", () => {
   song.play();
-  playBtn.hidden = true;
-  pauseBtn.hidden = false;
+  hidePlayBtn();
 });
 
 pauseBtn.addEventListener("click", () => {
   song.pause();
-  playBtn.hidden = false;
-  pauseBtn.hidden = true;
+  hidePauseBtn();
+});
+
+previousSongBtn.addEventListener("click", () => {
+  if (currentSong === 0) {
+    currentSong = songs.length - 1;
+  } else {
+    currentSong--;
+  }
+
+  song.src = songs[currentSong].songSrc;
+  setSlider(0);
+  hidePauseBtn();
+});
+
+nextSongBtn.addEventListener("click", () => {
+  if (currentSong === songs.length - 1) {
+    currentSong = 0;
+  } else {
+    currentSong++;
+  }
+
+  song.src = songs[currentSong].songSrc;
+  setSlider(0);
+  hidePauseBtn();
 });
 
 sliderContainer.addEventListener("click", (e) => {
@@ -93,5 +139,3 @@ sliderContainer.addEventListener("click", (e) => {
   const sliderWidth = clickX / elementWidth;
   setSlider(sliderWidth);
 });
-
-displaySong();
