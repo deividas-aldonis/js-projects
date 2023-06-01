@@ -14,17 +14,18 @@ const nextSongBtn = document.querySelector(".next-btn");
 
 const songs = [
   {
-    name: "Another One Bites The Dust",
-    artist: "Queen",
-    imageSrc: "images/another-one-bites-the-dust.jpg",
-    songSrc: "music/another-one-bites-the-dust.mp3",
-  },
-  {
     name: "Drive My Car",
     artist: "The Beatles",
     imageSrc: "images/drive-my-car.jpg",
     songSrc: "music/drive-my-car.mp3",
   },
+  {
+    name: "Another One Bites The Dust",
+    artist: "Queen",
+    imageSrc: "images/another-one-bites-the-dust.jpg",
+    songSrc: "music/another-one-bites-the-dust.mp3",
+  },
+
   {
     name: "Life is a Highway",
     artist: "Rascal Flatts",
