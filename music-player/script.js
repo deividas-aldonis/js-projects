@@ -6,8 +6,9 @@ const songTimeGoing = document.querySelector(".song-time-going");
 const songTimeLeft = document.querySelector(".song-time-left");
 const playBtn = document.querySelector(".play-btn");
 const pauseBtn = document.querySelector(".pause-btn");
-const sliderContainer = document.querySelector(".slider-container");
+const sliderContainer = document.querySelector(".outer-slider-container");
 const slider = document.querySelector(".slider");
+const sliderOnHover = document.querySelector(".slider-hover");
 const previousSongBtn = document.querySelector(".previous-btn");
 const nextSongBtn = document.querySelector(".next-btn");
 
@@ -139,7 +140,16 @@ sliderContainer.addEventListener("click", (e) => {
   const songDuration = song.duration;
 
   song.currentTime = (clickX / elementWidth) * songDuration;
+});
 
-  const sliderWidth = clickX / elementWidth;
-  setSlider(sliderWidth);
+sliderContainer.addEventListener("mousemove", (e) => {
+  if (e.target.classList.contains("slider")) return;
+  const elementWidth = e.currentTarget.getBoundingClientRect().width;
+  const clickX = e.offsetX;
+  const sliderWidth = Math.round((clickX / elementWidth) * 100);
+  sliderOnHover.style.width = `${sliderWidth}%`;
+});
+
+sliderContainer.addEventListener("mouseleave", () => {
+  sliderOnHover.style.width = "0%";
 });

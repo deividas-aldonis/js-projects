@@ -50,23 +50,39 @@ body {
 .song-time {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
+  margin-bottom: -8px;
+}
+
+.outer-slider-container {
+  padding: 12px 0;
+  cursor: pointer;
 }
 
 .slider-container {
+  position: relative;
   height: 4px;
   width: 100%;
   background-color: #fff;
   border-radius: 4px;
-  cursor: pointer;
   overflow: hidden;
 }
 
 .slider {
+  position: absolute;
+  top: 0;
+  z-index: 2;
   width: 0%;
   height: 100%;
   background-color: #333;
   transition: width 0.1s linear;
+}
+
+.slider-hover {
+  position: absolute;
+  z-index: 1;
+  width: 0%;
+  height: 100%;
+  background-color: cadetblue;
 }
 
 .song-controls {
