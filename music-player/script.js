@@ -95,6 +95,10 @@ song.addEventListener("timeupdate", async function (e) {
   setSlider(sliderWidth);
 });
 
+song.addEventListener("ended", () => {
+  hidePauseBtn();
+});
+
 playBtn.addEventListener("click", () => {
   song.play();
   hidePlayBtn();
