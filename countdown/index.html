@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countdown</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <div class="clock-background"></div>
+    <div class="container">
+      <div class="countdown-input-container">
+        <h1 class="title">Create a Custom Countdown</h1>
+        <form class="countdown-form">
+          <label class="countdown-form__label" for="title">Title</label>
+          <input
+            class="countdown-form__input"
+            placeholder="What are you counting down to?"
+            id="title"
+          />
+          <label class="countdown-form__label" for="date-picker"
+            >Select a date</label
+          >
+          <input
+            class="countdown-form__input"
+            type="date"
+            id="date-picker"
+            required
+            pattern="\d{4}-\d{2}-\d{2}"
+          />
+          <button class="countdown-form__btn" type="submit">SUBMIT</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
