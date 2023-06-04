@@ -13,32 +13,60 @@
     />
     <link rel="stylesheet" href="styles/normalize.css" />
     <link rel="stylesheet" href="styles/style.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="clock-background"></div>
-    <div class="container">
-      <div class="countdown-input-container">
-        <h1 class="title">Create a Custom Countdown</h1>
-        <form class="countdown-form">
-          <label class="countdown-form__label" for="title">Title</label>
-          <input
-            class="countdown-form__input"
-            placeholder="What are you counting down to?"
-            id="title"
-          />
-          <label class="countdown-form__label" for="date-picker"
-            >Select a date</label
-          >
-          <input
-            class="countdown-form__input"
-            type="date"
-            id="date-picker"
-            required
-            pattern="\d{4}-\d{2}-\d{2}"
-          />
-          <button class="countdown-form__btn" type="submit">SUBMIT</button>
-        </form>
-      </div>
-    </div>
+    <div id="container" class="container"></div>
+
+    <template id="countdown-form-template">
+      <h1 class="title">Create a Custom Countdown</h1>
+      <form class="countdown-form" id="countdown-form">
+        <label class="countdown-form__label" for="title">Title</label>
+        <input
+          name="title"
+          class="countdown-form__input"
+          placeholder="What are you counting down to?"
+          id="title"
+        />
+        <label class="countdown-form__label" for="date-picker"
+          >Select date</label
+        >
+        <input
+          name="date"
+          class="countdown-form__input"
+          id="countdown-form__date-input"
+          type="date"
+          id="date-picker"
+          required
+        />
+        <button id="countdown-form__btn" class="btn" type="submit">
+          SUBMIT
+        </button>
+      </form>
+    </template>
+
+    <template id="countdown-timer-template">
+      <ul class="countdown-timer">
+        <li class="countdown-timer__time-unit-item">
+          <span class="countdown-timer__time-unit-name">Days</span>
+          <span class="countdown-timer__time-unit-value">365</span>
+        </li>
+        <li class="countdown-timer__time-unit-item">
+          <span class="countdown-timer__time-unit-name">Hours</span>
+          <span class="countdown-timer__time-unit-value">23</span>
+        </li>
+
+        <li class="countdown-timer__time-unit-item">
+          <span class="countdown-timer__time-unit-name">Minutes</span>
+          <span class="countdown-timer__time-unit-value">22</span>
+        </li>
+
+        <li class="countdown-timer__time-unit-item">
+          <span class="countdown-timer__time-unit-name">Seconds</span>
+          <span class="countdown-timer__time-unit-value">05</span>
+        </li>
+      </ul>
+      <button id="reset-btn" class="btn">RESET</button>
+    </template>
   </body>
 </html>
