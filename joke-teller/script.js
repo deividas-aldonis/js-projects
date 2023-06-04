@@ -30,6 +30,7 @@ function voiceListPromise() {
 // When the page loads, it takes some amount of time to populate voices
 async function populateVoiceList() {
   voices = await voiceListPromise();
+  console.log(voices);
 }
 
 async function getJoke() {
@@ -68,6 +69,6 @@ function tellJoke({ question, punchline }) {
 
 function addVoice(jokePart) {
   const speechSynthesis = new SpeechSynthesisUtterance(jokePart);
-  speechSynthesis.voice = voices[5];
+  speechSynthesis.voice = voices[6];
   return speechSynthesis;
 }

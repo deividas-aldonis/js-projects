@@ -1,47 +1,5 @@
-// const form = document.getElementById("countdown-form");
-// const dateInput = document.getElementById("countdown-form__date-input");
-// const submitFormBtn = document.getElementById("countdown-form__btn");
-
-// submitFormBtn.addEventListener("click", (e) => {
-//   e.preventDefault();
-
-//   const formData = new FormData(form);
-//   const title = formData.get("title");
-//   const date = formData.get("date");
-//   console.log(date);
-//   // Split the date into year, month, day.
-//   const [year, month, day] = date.split("-").map((x) => parseInt(x));
-//   const countDownDate = new Date(year, month - 1, day, 4, 0, 0, 0);
-//   const now = new Date();
-//   const distance = countDownDate - now;
-
-//   if (distance < 0) return alert("date too small");
-
-//   let s = Math.floor(distance / 1000);
-//   let m = Math.floor(s / 60);
-//   let h = Math.floor(m / 60);
-//   let d = Math.floor(h / 24);
-//   s %= 60;
-//   m %= 60;
-//   h %= 24;
-//   console.log("das");
-// });
-
-// function padZero(num) {
-//   return num.toString().padStart(2, "0");
-// }
-
-// function setMinDate() {
-//   const now = new Date();
-//   const year = now.getFullYear();
-//   const month = now.getMonth() + 1;
-//   const day = now.getDate();
-
-//   dateInput.min = `${year}-${padZero(month)}-${padZero(day)}`;
-// }
-// setMinDate();
-
 const container = document.getElementById("container");
+let timerId;
 
 // Validation functions
 function validateDate(date) {
@@ -49,8 +7,18 @@ function validateDate(date) {
     .split("-")
     .map((datePart) => parseInt(datePart));
 
-  const distance = new Date(year, month - 1, day, 0, 0, 0, 0) - Date.now();
-  return distance > 0;
+  const distance = new Date(year, month - 1, day, 5, 13, 20, 0) - Date.now();
+
+  if (distance < 0) {
+    return {
+      error: true,
+    };
+  }
+
+  return {
+    error: false,
+    distance,
+  };
 }
 
 function validateTitle(title) {
@@ -58,6 +26,31 @@ function validateTitle(title) {
 }
 // Timer functions
 
+function addTimer(distance) {
+  timerId = setInterval(() => {
+    if (distance < 0) {
+      // Add validation
+      clearInterval(timerId);
+      return;
+    }
+
+    let s = Math.floor(distance / 1000);
+    let m = Math.floor(s / 60);
+    let h = Math.floor(m / 60);
+    let d = Math.floor(h / 24);
+    s %= 60;
+    m %= 60;
+    h %= 24;
+
+    document.getElementById("time-unit-days").textContent = d;
+    document.getElementById("time-unit-hours").textContent = h;
+    document.getElementById("time-unit-minutes").textContent = m;
+    document.getElementById("time-unit-seconds").textContent = s;
+    distance -= 1000;
+  }, 1000);
+}
+
+// Form handling, DOM
 function submitForm(e) {
   e.preventDefault();
 
@@ -67,12 +60,12 @@ function submitForm(e) {
 
   // Validate form inputs
   // Title is optional
-  const isTitleValid = validateTitle(title);
-  const isDateValid = validateDate(date);
+  // const isTitleValid = validateTitle(title);
+  const { error, distance } = validateDate(date);
 
-  if (isDateValid) {
+  if (!error) {
     addTemplateToDOM("countdown-timer-template");
-    // addTimer();
+    addTimer(distance);
   } else {
     // Throw error
     console.error("invalid date");
@@ -81,6 +74,7 @@ function submitForm(e) {
 
 function reset() {
   // reset counter
+  clearInterval(timerId);
   addTemplateToDOM();
 }
 
@@ -101,4 +95,7 @@ function addTemplateToDOM(templateName = "countdown-form-template") {
     document.getElementById("reset-btn").addEventListener("click", reset);
   }
 }
-addTemplateToDOM();
+
+(function () {
+  addTemplateToDOM();
+})();

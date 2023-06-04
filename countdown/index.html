@@ -16,6 +16,8 @@
     <script src="script.js" defer></script>
   </head>
   <body>
+    <div class="bg-image"></div>
+
     <div id="container" class="container"></div>
 
     <template id="countdown-form-template">
@@ -44,26 +46,33 @@
         </button>
       </form>
     </template>
-
     <template id="countdown-timer-template">
       <ul class="countdown-timer">
         <li class="countdown-timer__time-unit-item">
           <span class="countdown-timer__time-unit-name">Days</span>
-          <span class="countdown-timer__time-unit-value">365</span>
+          <span id="time-unit-days" class="countdown-timer__time-unit-value"
+            >365</span
+          >
         </li>
         <li class="countdown-timer__time-unit-item">
           <span class="countdown-timer__time-unit-name">Hours</span>
-          <span class="countdown-timer__time-unit-value">23</span>
+          <span id="time-unit-hours" class="countdown-timer__time-unit-value"
+            >23</span
+          >
         </li>
 
         <li class="countdown-timer__time-unit-item">
           <span class="countdown-timer__time-unit-name">Minutes</span>
-          <span class="countdown-timer__time-unit-value">22</span>
+          <span id="time-unit-minutes" class="countdown-timer__time-unit-value"
+            >22</span
+          >
         </li>
 
         <li class="countdown-timer__time-unit-item">
           <span class="countdown-timer__time-unit-name">Seconds</span>
-          <span class="countdown-timer__time-unit-value">05</span>
+          <span id="time-unit-seconds" class="countdown-timer__time-unit-value"
+            >05</span
+          >
         </li>
       </ul>
       <button id="reset-btn" class="btn">RESET</button>
