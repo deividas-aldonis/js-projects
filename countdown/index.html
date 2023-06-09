@@ -38,7 +38,6 @@
           class="countdown-form__input"
           id="countdown-form__date-input"
           type="date"
-          id="date-picker"
           required
         />
         <button id="countdown-form__btn" class="btn" type="submit">
@@ -47,35 +46,42 @@
       </form>
     </template>
     <template id="countdown-timer-template">
-      <ul class="countdown-timer">
-        <li class="countdown-timer__time-unit-item">
-          <span class="countdown-timer__time-unit-name">Days</span>
-          <span id="time-unit-days" class="countdown-timer__time-unit-value"
-            >365</span
-          >
-        </li>
-        <li class="countdown-timer__time-unit-item">
-          <span class="countdown-timer__time-unit-name">Hours</span>
-          <span id="time-unit-hours" class="countdown-timer__time-unit-value"
-            >23</span
-          >
-        </li>
+      <div class="countdown-timer-container">
+        <h3 id="countdown-timer-title" class="title">COUNTDOWN</h3>
+        <ul id="countdown-timer" class="countdown-timer hidden">
+          <li class="countdown-timer__time-unit-item">
+            <span class="countdown-timer__time-unit-name">Days</span>
+            <span id="time-unit-days" class="countdown-timer__time-unit-value"
+              >365</span
+            >
+          </li>
+          <li class="countdown-timer__time-unit-item">
+            <span class="countdown-timer__time-unit-name">Hours</span>
+            <span id="time-unit-hours" class="countdown-timer__time-unit-value"
+              >23</span
+            >
+          </li>
 
-        <li class="countdown-timer__time-unit-item">
-          <span class="countdown-timer__time-unit-name">Minutes</span>
-          <span id="time-unit-minutes" class="countdown-timer__time-unit-value"
-            >22</span
-          >
-        </li>
+          <li class="countdown-timer__time-unit-item">
+            <span class="countdown-timer__time-unit-name">Minutes</span>
+            <span
+              id="time-unit-minutes"
+              class="countdown-timer__time-unit-value"
+              >22</span
+            >
+          </li>
 
-        <li class="countdown-timer__time-unit-item">
-          <span class="countdown-timer__time-unit-name">Seconds</span>
-          <span id="time-unit-seconds" class="countdown-timer__time-unit-value"
-            >05</span
-          >
-        </li>
-      </ul>
-      <button id="reset-btn" class="btn">RESET</button>
+          <li class="countdown-timer__time-unit-item">
+            <span class="countdown-timer__time-unit-name">Seconds</span>
+            <span
+              id="time-unit-seconds"
+              class="countdown-timer__time-unit-value"
+              >05</span
+            >
+          </li>
+        </ul>
+        <button id="reset-btn" class="btn">RESET</button>
+      </div>
     </template>
   </body>
 </html>

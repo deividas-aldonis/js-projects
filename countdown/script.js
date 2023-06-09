@@ -1,36 +1,41 @@
 const container = document.getElementById("container");
 let timerId;
 
-// Validation functions
-function validateDate(date) {
-  const [year, month, day] = date
-    .split("-")
-    .map((datePart) => parseInt(datePart));
-
-  const distance = new Date(year, month - 1, day, 5, 13, 20, 0) - Date.now();
+function addTimer(distance, title) {
+  const days = document.getElementById("time-unit-days");
+  const hours = document.getElementById("time-unit-hours");
+  const minutes = document.getElementById("time-unit-minutes");
+  const seconds = document.getElementById("time-unit-seconds");
 
   if (distance < 0) {
-    return {
-      error: true,
-    };
+    clearInterval(timerId);
+    alert("Countdown finished");
+    return;
   }
 
-  return {
-    error: false,
-    distance,
-  };
-}
+  let s = Math.floor(distance / 1000);
+  let m = Math.floor(s / 60);
+  let h = Math.floor(m / 60);
+  let d = Math.floor(h / 24);
+  s %= 60;
+  m %= 60;
+  h %= 24;
 
-function validateTitle(title) {
-  return title.trim().length > 0;
-}
-// Timer functions
+  days.textContent = d;
+  hours.textContent = h;
+  minutes.textContent = m;
+  seconds.textContent = s;
 
-function addTimer(distance) {
+  if (title.trim().length > 0) {
+    document.getElementById("countdown-timer-title").textContent = title.trim();
+  }
+
   timerId = setInterval(() => {
+    distance -= 1000;
+
     if (distance < 0) {
-      // Add validation
       clearInterval(timerId);
+      alert("Countdown finished");
       return;
     }
 
@@ -42,15 +47,26 @@ function addTimer(distance) {
     m %= 60;
     h %= 24;
 
-    document.getElementById("time-unit-days").textContent = d;
-    document.getElementById("time-unit-hours").textContent = h;
-    document.getElementById("time-unit-minutes").textContent = m;
-    document.getElementById("time-unit-seconds").textContent = s;
-    distance -= 1000;
+    days.textContent = d;
+    hours.textContent = h;
+    minutes.textContent = m;
+    seconds.textContent = s;
   }, 1000);
 }
 
-// Form handling, DOM
+function validateDate(date) {
+  const [year, month, day] = date
+    .split("-")
+    .map((datePart) => parseInt(datePart));
+
+  const distance = new Date(year, month - 1, day, 0, 0, 0, 0) - Date.now();
+
+  return {
+    error: distance < 0,
+    distance,
+  };
+}
+
 function submitForm(e) {
   e.preventDefault();
 
@@ -58,22 +74,18 @@ function submitForm(e) {
   const title = formData.get("title");
   const date = formData.get("date");
 
-  // Validate form inputs
-  // Title is optional
-  // const isTitleValid = validateTitle(title);
   const { error, distance } = validateDate(date);
 
-  if (!error) {
-    addTemplateToDOM("countdown-timer-template");
-    addTimer(distance);
-  } else {
-    // Throw error
-    console.error("invalid date");
+  if (error) {
+    alert("Date too low...");
+    return;
   }
+
+  addTemplateToDOM("countdown-timer-template");
+  addTimer(distance, title);
 }
 
 function reset() {
-  // reset counter
   clearInterval(timerId);
   addTemplateToDOM();
 }
@@ -91,11 +103,15 @@ function addTemplateToDOM(templateName = "countdown-form-template") {
     document
       .getElementById("countdown-form")
       .addEventListener("submit", submitForm);
+
+    // set min date to date input
+    const today = new Date();
+    today.setDate(today.getDate() + 1);
+    const tomorrow = today.toISOString().split("T")[0];
+    document.getElementById("countdown-form__date-input").min = tomorrow;
   } else {
     document.getElementById("reset-btn").addEventListener("click", reset);
   }
 }
 
-(function () {
-  addTemplateToDOM();
-})();
+addTemplateToDOM();

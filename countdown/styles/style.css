@@ -30,6 +30,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 90%;
+  max-width: 700px;
   padding: 20px 20px 30px;
   border-radius: 8px;
   background-color: rgb(240, 248, 255, 0.8);
@@ -49,8 +50,9 @@ body {
 
 /* Countdown form */
 .title {
-  font-size: 24px;
+  font-size: 32px;
   text-align: center;
+  color: #4169e1;
 }
 
 .countdown-form {
@@ -76,6 +78,11 @@ body {
 }
 
 /* Countdown timer */
+.countdown-timer-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .countdown-timer {
   display: flex;
   justify-content: space-between;
@@ -83,7 +90,7 @@ body {
   text-transform: uppercase;
 
   list-style-type: none;
-  padding: 40px 20px 0;
+  padding: 20px 20px 0;
   margin: 0;
 }
 
