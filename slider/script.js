@@ -88,7 +88,7 @@ function dragged() {
     slider.style.transform = `translateX(${-currentTranslate}px)`;
   }
   if (dragging) animationId = requestAnimationFrame(dragged);
-  getSpeed();
+  computeSpeed();
 }
 
 function computeSliderWidth() {
@@ -99,7 +99,7 @@ function computeSliderWidth() {
   return totalWidth - width + padding;
 }
 
-function getSpeed() {
+function computeSpeed() {
   if (prevEvent && currentEvent) {
     const movementX = Math.abs(currentEvent.screenX - prevEvent.screenX);
     const movementY = Math.abs(currentEvent.screenY - prevEvent.screenY);
