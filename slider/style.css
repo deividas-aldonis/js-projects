@@ -1,4 +1,6 @@
 :root {
+  --body-bg-color: #f5f5f5;
+
   --slider-height: 50%;
   --slider-bg-color: #121315;
 
@@ -20,7 +22,8 @@ body {
   display: flex;
   align-items: center;
   margin: 0;
-  background-color: #f5f5f5;
+  background-color: var(--body-bg-color);
+  touch-action: none;
 }
 
 .slider-container {
@@ -28,7 +31,6 @@ body {
   height: var(--slider-height);
   background-color: var(--slider-bg-color);
   overflow: hidden;
-
   user-select: none;
   touch-action: none;
   cursor: grab;
@@ -37,19 +39,16 @@ body {
 .slider {
   display: flex;
   gap: 20px;
-  padding: 20px;
   height: 100%;
-  transition: transform 0.1s ease-out;
+  padding: 20px;
 }
 
 .slider__slide {
   min-width: var(--slide-width);
   height: 100%;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 12px;
-
   background-color: var(--slide-bg-color);
+  border-radius: 12px;
+  object-fit: cover;
   pointer-events: none;
 }
 
