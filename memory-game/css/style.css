@@ -1,6 +1,27 @@
+@import "./normalize.css";
 @import "./variables.css";
 @import "./components/loader.css";
 
+html,
 body {
-  background-color: var(--body-color);
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+.page-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateX(100%);
+  background-image: linear-gradient(
+    -136deg,
+    var(--primary-color) 0%,
+    var(--secondary-color) 100%
+  );
 }

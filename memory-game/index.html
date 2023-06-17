@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory Game</title>
     <link rel="stylesheet" href="css/style.css" />
-
-    <script defer src="script.js"></script>
+    <script type="module" src="js/script.js"></script>
   </head>
   <body>
-    <div class="loader">
+    <div class="loader" id="loader">
       <div class="loader__dot"></div>
       <div class="loader__step loader__step--first"></div>
       <div class="loader__step loader__step--second"></div>
       <div class="loader__step loader__step--third"></div>
+    </div>
+    <div class="page-overlay" id="page-overlay"></div>
+
+    <div hidden id="app">
+      <h1>Hello</h1>
     </div>
   </body>
 </html>
