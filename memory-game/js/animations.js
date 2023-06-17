@@ -1,4 +1,37 @@
 const overlay = document.getElementById("page-overlay");
+const loader = document.getElementById("loader");
+
+const loaderKeyframes = [
+  {
+    transform: "scale(0)",
+    opacity: "0",
+  },
+  {
+    offset: 0.1,
+    transform: "scale(0.2)",
+    opacity: "0.5",
+  },
+  {
+    offset: 0.2,
+    transform: "scale(0.4)",
+    opacity: "1",
+  },
+  {
+    offset: 0.4,
+    transform: "scale(0.6)",
+    opacity: "1",
+  },
+  {
+    transform: "scale(1)",
+    opacity: "1",
+  },
+];
+
+const loaderOptions = {
+  duration: 250,
+  fill: "forwards",
+  easing: "cubic-bezier(0.76, 0, 1, 1)",
+};
 
 const getKeyframes = (translateX) => {
   return {
@@ -15,6 +48,7 @@ const getOptions = (delay) => {
   };
 };
 
+await loader.animate(loaderKeyframes, loaderOptions).finished;
 const overlayAnimation = overlay.animate(getKeyframes(0), getOptions(1250));
 
 export const animationFinish = async () => {
