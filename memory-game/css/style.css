@@ -1,0 +1,6 @@
+@import "./variables.css";
+@import "./components/loader.css";
+
+body {
+  background-color: var(--body-color);
+}
