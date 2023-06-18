@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: 1px red !important;
 }
 
 html,
@@ -65,18 +66,33 @@ body {
   max-height: 550px;
   display: grid;
   gap: 2px;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 25%);
+  grid-template-rows: repeat(4, 25%);
   margin: 40px 0;
+  border-radius: 4px;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
 }
 
 .game__card {
   background-color: var(--primary-color);
   opacity: 0;
+  cursor: pointer;
+}
+
+.game__card-icon {
+  height: 100%;
+  width: 100%;
+  padding: 10%;
 }
 
 .letter {
   display: inline-block;
   opacity: 0;
   transform: translateY(40px);
+}
+
+.success {
+  background-color: #333;
 }
