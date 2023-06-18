@@ -70,3 +70,70 @@ export class PageAnimation {
     return true;
   }
 }
+
+export class CardsAnimation {
+  #cards = Array.from(document.querySelectorAll('[data-name="card"]'));
+
+  #keyframes = [
+    {
+      opacity: 0,
+    },
+    {
+      opacity: 1,
+    },
+  ];
+
+  #options(cardIndex) {
+    return {
+      fill: "forwards",
+      easing: "cubic-bezier(0.76, 0, 1, 1)",
+      duration: 100,
+      delay: cardIndex * 100,
+    };
+  }
+
+  load() {
+    this.#cards
+      .sort(() => 0.5 - Math.random())
+      .forEach((card, index) => {
+        card.animate(this.#keyframes, this.#options(index));
+      });
+  }
+}
+
+export class TextAnimation {
+  #letters = document.querySelectorAll('[data-name="letter"]');
+
+  #keyframes = [
+    {
+      opacity: 0,
+      transform: "translateY(40px)",
+    },
+    {
+      opacity: 1,
+      transform: "translateY(0px)",
+    },
+  ];
+
+  #options(letterIndex) {
+    return {
+      duration: 200,
+      delay: letterIndex * 100,
+      fill: "forwards",
+      easing: "cubic-bezier(0.7, 0, 0.7, 1.5)",
+    };
+  }
+
+  async load() {
+    for (const [index, letter] of this.#letters.entries()) {
+      const letterAnimation = letter.animate(
+        this.#keyframes,
+        this.#options(index)
+      );
+
+      if (this.#letters.length === index + 1) {
+        return letterAnimation.finished;
+      }
+    }
+  }
+}

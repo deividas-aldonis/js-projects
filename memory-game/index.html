@@ -15,7 +15,7 @@
     <script type="module" src="js/script.js"></script>
   </head>
   <body>
-    <div class="loader" id="loader">
+    <div hidden class="loader" id="loader">
       <div class="loader__dot"></div>
       <div class="loader__step loader__step--first"></div>
       <div class="loader__step loader__step--second"></div>
@@ -23,10 +23,38 @@
     </div>
     <div class="page-overlay" id="page-overlay"></div>
 
-    <div hidden id="app">
-      <div class="container">
-        <div class="title">Memory Game</div>
-        <div class="game"></div>
+    <div id="app" class="app">
+      <div class="game">
+        <div class="game__title">
+          <span class="letter" data-name="letter">M</span>
+          <span class="letter" data-name="letter">e</span>
+          <span class="letter" data-name="letter">m</span>
+          <span class="letter" data-name="letter">o</span>
+          <span class="letter" data-name="letter">r</span>
+          <span class="letter" data-name="letter">y</span>
+          <span class="letter" data-name="letter">G</span>
+          <span class="letter" data-name="letter">a</span>
+          <span class="letter" data-name="letter">m</span>
+          <span class="letter" data-name="letter">e</span>
+        </div>
+        <div class="game__cards">
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+          <div class="game__card" data-name="card"></div>
+        </div>
       </div>
     </div>
   </body>

@@ -1,3 +1,5 @@
-import { PageAnimation } from "./animations.js";
+import { PageAnimation, CardsAnimation, TextAnimation } from "./animations.js";
 
 await new PageAnimation().load();
+await new TextAnimation().load();
+new CardsAnimation().load();
