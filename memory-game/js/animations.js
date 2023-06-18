@@ -92,12 +92,18 @@ export class CardsAnimation {
     };
   }
 
-  load() {
-    this.#cards
-      .sort(() => 0.5 - Math.random())
-      .forEach((card, index) => {
-        card.animate(this.#keyframes, this.#options(index));
-      });
+  async load() {
+    this.#cards.sort(() => 0.5 - Math.random());
+
+    for (const [index, card] of this.#cards.entries()) {
+      const cardsAnimation = card.animate(
+        this.#keyframes,
+        this.#options(index)
+      );
+      if (this.#cards.length === index + 1) {
+        return cardsAnimation.finished;
+      }
+    }
   }
 }
 

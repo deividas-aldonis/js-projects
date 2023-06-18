@@ -52,26 +52,27 @@ body {
 }
 
 .game__title {
-  font-size: 3rem;
+  font-size: clamp(1.2rem, 12vw, 5rem);
+  text-align: center;
   color: #333;
+  margin-top: 40px;
 }
 
 .game__cards {
-  width: 500px;
-  height: 500px;
+  width: 80vmin;
+  height: 80vmin;
+  max-width: 550px;
+  max-height: 550px;
   display: grid;
   gap: 2px;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
+  margin: 40px 0;
 }
 
 .game__card {
   background-color: var(--primary-color);
   opacity: 0;
-}
-
-.letter:first-child {
-  transform: translateY(0);
 }
 
 .letter {
