@@ -1,7 +1,3 @@
-import { animationFinish } from "./animations.js";
+import { PageAnimation } from "./animations.js";
 
-const isAnimationFinished = async () => {
-  const isDone = await animationFinish();
-  console.log(isDone);
-};
-isAnimationFinished();
+await new PageAnimation().load();
