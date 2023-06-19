@@ -9,8 +9,8 @@
 .loader__dot {
   background-image: linear-gradient(
     -136deg,
-    var(--primary-color) 0%,
-    var(--secondary-color) 100%
+    var(--primary) 0%,
+    var(--secondary) 100%
   );
   border-radius: 50%;
   width: 29px;
@@ -34,7 +34,7 @@
   position: absolute;
   width: 29px;
   height: 29px;
-  border-top: 2px solid var(--primary-color);
+  border-top: 2px solid var(--primary);
   top: 0;
   right: 0;
 }

@@ -1,3 +1,5 @@
+import { Popup } from "./popup.js";
+
 export class Game {
   #cardContainer = document.querySelector('[data-name="cards"]');
   #cards = document.querySelectorAll('[data-name="card"]');
@@ -21,6 +23,11 @@ export class Game {
   ];
   #pickedCards = [];
   #cardsWon = [];
+
+  constructor() {
+    this.#addCards();
+    this.#addListeners();
+  }
 
   #addCards() {
     this.#cardNames.sort(() => 0.5 - Math.random());
@@ -73,7 +80,7 @@ export class Game {
       this.#cardsWon.push(first, second);
 
       if (this.#cardsWon.length === this.#cardNames.length) {
-        // Show message that the user has won
+        new Popup();
       } else {
         this.#pickedCards = [];
       }
@@ -82,12 +89,15 @@ export class Game {
         first.hidden = true;
         second.hidden = true;
         this.#pickedCards = [];
-      }, 1000);
+      }, 500);
     }
   }
 
-  init() {
+  reset() {
+    const cards = document.querySelectorAll(".game__card-icon");
+    cards.forEach((card) => card.remove());
+    this.#cardsWon = [];
+    this.#pickedCards = [];
     this.#addCards();
-    this.#addListeners();
   }
 }

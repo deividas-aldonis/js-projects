@@ -4,6 +4,4 @@ import { Game } from "./game.js";
 await new PageAnimation().load();
 await new TextAnimation().load();
 await new CardsAnimation().load();
-const game = new Game();
-
-game.init();
+export const game = new Game();

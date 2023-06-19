@@ -1,5 +1,8 @@
 :root {
-  --body-color: whitesmoke;
-  --primary-color: #569cff;
-  --secondary-color: #515dec;
+  --body: whitesmoke;
+  --primary: #569cff;
+  --secondary: #515dec;
+  --success: #2ea043;
+  --text-dark: #333;
+  --text-white: #fff;
 }
