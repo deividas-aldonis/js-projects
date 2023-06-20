@@ -1,5 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #1c1d22;
+}
+
+.toastify {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+}
+.toast {
+  --background-color: #fff;
+  --color: #757575;
+
+  position: relative;
+  padding: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 400px;
+  color: var(--color);
+  background-color: var(--background-color);
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.toast--success {
+  --color: #fff;
+  --background-color: #07bc0c;
+}
+.toast--error {
+  --color: #fff;
+  --background-color: #e74c3c;
+}
+.toast--warning {
+  --color: #fff;
+  --background-color: #f1c40f;
+}
+.toast--info {
+  --color: #fff;
+  --background-color: #3498db;
+}
+
+.toast__icon {
+  align-self: flex-start;
+
+  font-size: 20px;
+}
+.toast__close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.toast__close-btn:hover {
+  opacity: 1;
+}
+
+.toast::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: hsla(0, 0%, 100%, 0.7);
+  width: 100%;
+  height: 3px;
+  content: "";
+  /* box-shadow: 0 0 10px var(--color); */
+  animation: timeOut 5s linear 1 forwards;
 }
