@@ -40,6 +40,26 @@ class Validator {
     return false;
   }
 
+  static isValidString(str) {
+    if (typeof str !== "string") {
+      return {
+        error: true,
+        message: "First argument has to be of type string",
+      };
+    }
+
+    if (str.trim().length === 0) {
+      return {
+        error: true,
+        message: "First argument cannot be set to empty",
+      };
+    }
+
+    return {
+      error: false,
+    };
+  }
+
   static isObjectEmpty(obj) {
     return Object.keys(obj).length === 0;
   }
@@ -175,8 +195,15 @@ class Toast {
     return this.#content;
   }
 
-  set content(c) {
-    this.#content = c;
+  set content(content) {
+    const isValidString = Validator.isValidString(content);
+
+    if (isValidString.error) {
+      console.error(isValidString.message);
+      return;
+    }
+
+    this.#content = content;
   }
 
   get options() {
@@ -188,7 +215,6 @@ class Toast {
 
     const isObject = V.isObject(userOptions);
     if (!isObject) {
-      // TODO
       this.#options = this.#defaultOptions;
       console.log("No options object");
       return;
@@ -196,7 +222,6 @@ class Toast {
 
     const isEmpty = V.isObjectEmpty(userOptions);
     if (isEmpty) {
-      // TODO
       this.#options = this.#defaultOptions;
       console.log("Empty object provided");
       return;
@@ -216,7 +241,7 @@ class Toast {
 
     const areValuesValid = V.areValuesValid(userOptions);
     if (areValuesValid.error) {
-      console.error(areValuesValid.error);
+      console.error(areValuesValid.message);
       return;
     }
 
@@ -233,10 +258,11 @@ class Toast {
   }
 }
 
-const t = new Toast("Asdsa", {
+const first = new Toast("Asdsa", {
   hideProgressBar: true,
   theme: "dark",
   autoClose: 1000,
   draggable: false,
   position: "top-left",
+  asd: "asd",
 });
