@@ -8,28 +8,27 @@ class DOM {
 
 class Validator {
   static validKeys = [
-    "position",
     "autoClose",
     "hideProgressBar",
     "closeOnClick",
     "pauseOnHover",
     "draggable",
     "theme",
+    "stayOpen",
   ];
 
   static allowedValues = {
-    positions: ["top-right", "top-center", "top-left"],
     themes: ["colored", "light", "dark"],
-    autoClose: 100,
+    autoClose: 500,
   };
 
   static allowedTypes = {
-    position: (position) => typeof position === "string",
     autoClose: (autoClose) => typeof autoClose === "number",
     hideProgressBar: (hideProgressBar) => typeof hideProgressBar === "boolean",
     closeOnClick: (closeOnClick) => typeof closeOnClick === "boolean",
     pauseOnHover: (pauseOnHover) => typeof pauseOnHover === "boolean",
     draggable: (draggable) => typeof draggable === "boolean",
+    stayOpen: (stayOpen) => typeof stayOpen === "boolean",
     theme: (theme) => typeof theme === "string",
   };
 
@@ -113,18 +112,6 @@ class Validator {
     };
   }
 
-  static generateTypeError(type) {
-    return {
-      position: "position needs to be a string",
-      autoClose: "autoClose needs to be a number",
-      hideProgressBar: "hideProgressBar needs to be a boolean",
-      closeOnClick: "closeOnClick needs to be a boolean",
-      pauseOnHover: "pauseOnHover needs to be a boolean",
-      draggable: "draggable needs to be a boolean",
-      theme: "theme needs to be a string",
-    }[type];
-  }
-
   static areValuesValid(options) {
     const allowed = Validator.allowedValues;
 
@@ -141,21 +128,8 @@ class Validator {
       }
     }
 
-    if ("position" in options) {
-      const isPositionValid = allowed.positions.find(
-        (pos) => pos === options.position
-      );
-
-      if (!isPositionValid) {
-        return {
-          error: true,
-          message: `position allowed values: ${[allowed.positions.join(" ")]}`,
-        };
-      }
-    }
-
     if ("autoClose" in options) {
-      const isAutoCloseValid = options.autoClose > allowed.autoClose;
+      const isAutoCloseValid = options.autoClose >= allowed.autoClose;
 
       if (!isAutoCloseValid) {
         return {
@@ -170,25 +144,41 @@ class Validator {
       message: "All good",
     };
   }
+
+  static generateTypeError(type) {
+    return {
+      stayOpen: "stayOpen needs to be a boolean",
+      autoClose: "autoClose needs to be a number",
+      hideProgressBar: "hideProgressBar needs to be a boolean",
+      closeOnClick: "closeOnClick needs to be a boolean",
+      pauseOnHover: "pauseOnHover needs to be a boolean",
+      draggable: "draggable needs to be a boolean",
+      theme: "theme needs to be a string",
+    }[type];
+  }
 }
 
 class Toast {
+  #container = document.querySelector(".toastify");
   #defaultOptions = {
-    position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
+    stayOpen: true,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: false,
     theme: "colored",
   };
 
-  #options;
-  #content;
+  #options = this.#defaultOptions;
+  #content = "Awesome Toast!";
 
   constructor(content, userOptions) {
+    // TODO
+    // Rewrite setter, just validate in the constructor userOptions
     this.content = content;
     this.options = userOptions;
+    this.createNewToast();
   }
 
   get content() {
@@ -206,23 +196,17 @@ class Toast {
     this.#content = content;
   }
 
-  get options() {
-    return this.#options;
-  }
-
   set options(userOptions) {
     const V = Validator;
 
     const isObject = V.isObject(userOptions);
     if (!isObject) {
-      this.#options = this.#defaultOptions;
       console.log("No options object");
       return;
     }
 
     const isEmpty = V.isObjectEmpty(userOptions);
     if (isEmpty) {
-      this.#options = this.#defaultOptions;
       console.log("Empty object provided");
       return;
     }
@@ -245,24 +229,99 @@ class Toast {
       return;
     }
 
+    Object.assign(this.#options, userOptions);
     // TODO
   }
 
   createNewToast() {
-    const html = `<div class="toast">
+    const {
+      autoClose,
+      closeOnClick,
+      draggable,
+      hideProgressBar,
+      pauseOnHover,
+      position,
+      stayOpen,
+      theme,
+    } = this.#options;
+
+    const html = `<div class="toast toast--success">
                     <i class="toast__icon fa-solid fa-circle-exclamation"></i>
                     <div class="toast__content">This is a toast!</div>
                     <i class="toast__close-btn fa-solid fa-xmark"></i>
+                    <div class="toast__progress"></div>
                   </div>`;
     const toastElement = DOM.elementFromHtml(html);
+    const progressBar = toastElement.lastElementChild;
+    const closeBtn = toastElement.children[2];
+    console.log(closeBtn);
+    this.#container.appendChild(toastElement);
+
+    if (closeOnClick) {
+      toastElement.addEventListener(
+        "click",
+        () => {
+          toastElement.remove();
+        },
+        {
+          once: true,
+        }
+      );
+    } else {
+      closeBtn.addEventListener(
+        "click",
+        () => {
+          toastElement.remove();
+        },
+        {
+          once: true,
+        }
+      );
+    }
+
+    if (stayOpen) {
+      progressBar.style.visibility = "hidden";
+      return;
+    }
+
+    const progressAnimation = progressBar.animate(
+      [
+        {
+          visibility: hideProgressBar ? "hidden" : "visible",
+          width: "100%",
+        },
+        {
+          visibility: hideProgressBar ? "hidden" : "visible",
+          width: "0%",
+        },
+      ],
+      {
+        duration: autoClose,
+        fill: "forwards",
+      }
+    );
+
+    if (pauseOnHover) {
+      toastElement.addEventListener("mouseenter", () => {
+        progressAnimation.pause();
+      });
+
+      toastElement.addEventListener("mouseleave", () => {
+        progressAnimation.play();
+      });
+    }
+
+    progressAnimation.addEventListener("finish", (e) => {
+      toastElement.remove();
+    });
   }
 }
-
-const first = new Toast("Asdsa", {
-  hideProgressBar: true,
-  theme: "dark",
-  autoClose: 1000,
-  draggable: false,
-  position: "top-left",
-  asd: "asd",
+document.querySelector(".new-toast").addEventListener("click", () => {
+  new Toast("Hello", {
+    stayOpen: false,
+    hideProgressBar: true,
+    pauseOnHover: false,
+    autoClose: 3000,
+    closeOnClick: false,
+  });
 });

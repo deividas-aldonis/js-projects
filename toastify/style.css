@@ -66,14 +66,11 @@ body {
   opacity: 1;
 }
 
-.toast::before {
+.toast__progress {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: hsla(0, 0%, 100%, 0.7);
-  width: 100%;
+  background-color: red;
   height: 3px;
-  content: "";
-  /* box-shadow: 0 0 10px var(--color); */
-  animation: timeOut 5s linear 1 forwards;
+  width: 100%;
 }
