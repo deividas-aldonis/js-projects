@@ -254,7 +254,6 @@ class Toast {
     const toastElement = DOM.elementFromHtml(html);
     const progressBar = toastElement.lastElementChild;
     const closeBtn = toastElement.children[2];
-    console.log(closeBtn);
     this.#container.appendChild(toastElement);
 
     if (closeOnClick) {
@@ -311,17 +310,31 @@ class Toast {
       });
     }
 
-    progressAnimation.addEventListener("finish", (e) => {
+    progressAnimation.addEventListener("finish", () => {
       toastElement.remove();
     });
   }
 }
+
+document.addEventListener("visibilitychange", () => {
+  const animations = document.getAnimations();
+
+  if (document.visibilityState === "visible" && animations.length > 0) {
+    animations.forEach((animation) => animation.play());
+    return;
+  }
+
+  if (document.visibilityState !== "visible" && animations.length > 0) {
+    animations.forEach((animation) => animation.pause());
+  }
+});
+
 document.querySelector(".new-toast").addEventListener("click", () => {
   new Toast("Hello", {
     stayOpen: false,
-    hideProgressBar: true,
+    hideProgressBar: false,
     pauseOnHover: false,
-    autoClose: 3000,
+    autoClose: 5000,
     closeOnClick: false,
   });
 });
