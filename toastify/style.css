@@ -11,13 +11,10 @@ body {
 
 .toastify {
   position: fixed;
-  top: 30px;
+  top: 20px;
   right: 20px;
 }
 .toast {
-  --background-color: #fff;
-  --color: #757575;
-
   position: relative;
   padding: 20px;
   margin-bottom: 10px;
@@ -25,33 +22,77 @@ body {
   align-items: center;
   gap: 12px;
   width: 400px;
-  color: var(--color);
+  color: var(--text-color);
   background-color: var(--background-color);
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
 }
 
-.toast--success {
-  --color: #fff;
+/* Dark theme */
+.toast--dark {
+  --background-color: #000;
+  --text-color: #fff;
+}
+.toast--dark.toast--success {
+  --progress-color: #07bc0c;
+  --icon-color: #07bc0c;
+}
+.toast--dark.toast--info {
+  --progress-color: #3498db;
+  --icon-color: #3498db;
+}
+.toast--dark.toast--error {
+  --progress-color: #e74c3c;
+  --icon-color: #e74c3c;
+}
+.toast--dark.toast--warning {
+  --progress-color: #f1c40f;
+  --icon-color: #f1c40f;
+}
+/* Light theme */
+.toast--light {
+  --background-color: #fff;
+  --text-color: #000;
+}
+.toast--light.toast--success {
+  --progress-color: #07bc0c;
+  --icon-color: #07bc0c;
+}
+.toast--light.toast--info {
+  --progress-color: #3498db;
+  --icon-color: #3498db;
+}
+.toast--light.toast--error {
+  --progress-color: #e74c3c;
+  --icon-color: #e74c3c;
+}
+.toast--light.toast--warning {
+  --progress-color: #f1c40f;
+  --icon-color: #f1c40f;
+}
+/* Colored theme */
+.toast--colored {
+  --text-color: #fff;
+  --progress-color: rgba(255, 255, 255, 0.7);
+  --icon-color: #fff;
+}
+.toast--colored.toast--success {
   --background-color: #07bc0c;
 }
-.toast--error {
-  --color: #fff;
+.toast--colored.toast--info {
+  --background-color: #3498db;
+}
+.toast--colored.toast--error {
   --background-color: #e74c3c;
 }
-.toast--warning {
-  --color: #fff;
+.toast--colored.toast--warning {
   --background-color: #f1c40f;
-}
-.toast--info {
-  --color: #fff;
-  --background-color: #3498db;
 }
 
 .toast__icon {
   align-self: flex-start;
-
+  color: var(--icon-color);
   font-size: 20px;
 }
 .toast__close-btn {
@@ -70,7 +111,8 @@ body {
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: red;
+  background-color: var(--progress-color);
   height: 3px;
   width: 100%;
+  visibility: hidden;
 }
