@@ -7,17 +7,20 @@ class Toast {
     pauseOnHover: true,
     theme: "dark",
     state: "success",
+    position: "top-right",
   });
+  #defaultContent = "This is awesome!😀";
 
   #options = Object.seal({ ...this.#defaultOptions });
   #content;
   #toastElement;
   #progressElement;
   #closeButton;
+  #parentContainer;
 
   constructor(content, userOptions) {
-    this.#content = content;
-    this.#options = Object.assign(this.#options, userOptions);
+    this.#content = content ?? this.#defaultContent;
+    Object.assign(this.#options, userOptions);
 
     this.#createToast();
     this.#addOptions();
@@ -94,14 +97,57 @@ class Toast {
     this.#toastElement = template.content.firstElementChild;
     this.#progressElement = this.#toastElement.lastElementChild;
     this.#closeButton = this.#progressElement.previousElementSibling;
+    this.#parentContainer = document.querySelector(
+      `.toast-container.${this.#options.position}`
+    );
 
-    document.querySelector(".toastify").appendChild(this.#toastElement);
+    if (!this.#parentContainer) {
+      const newParentContainer = document.createElement("div");
+      newParentContainer.classList.add(
+        "toast-container",
+        this.#options.position
+      );
+      document.querySelector(".toastify").appendChild(newParentContainer);
+      this.#parentContainer = newParentContainer;
+    }
+
+    this.#parentContainer.appendChild(this.#toastElement);
+
+    const animationPosition = {
+      "top-right": {
+        from: "translateX(calc(100% + 20px))",
+        to: "translateX(0%)",
+      },
+      "top-left": {
+        from: "translateX(calc(-100% - 20px))",
+        to: "translateX(0%)",
+      },
+      "top-center": {
+        from: "translateY(-100vh)",
+        to: "translateY(0%)",
+      },
+      "bottom-right": {
+        from: "translateX(calc(100% + 20px))",
+        to: "translateX(0%)",
+      },
+      "bottom-left": {
+        from: "translateX(calc(-100% - 20px))",
+        to: "translateX(0%)",
+      },
+      "bottom-center": {
+        from: "translateY(100vh)",
+        to: "translateY(0%)",
+      },
+    }[this.#options.position];
 
     this.#toastElement.animate(
-      [{ transform: "translateX(100%)" }, { transform: "translateX(0%)" }],
+      [
+        { transform: animationPosition.from, visibility: "visible" },
+        { transform: animationPosition.to, visibility: "visible" },
+      ],
       {
         duration: 300,
-        fill: "forwards",
+        fill: "both",
         easing: "cubic-bezier(0,1.18,.65,1.09)",
       }
     );
@@ -111,9 +157,40 @@ class Toast {
     const toastHeight = this.#toastElement.offsetHeight;
     const style = getComputedStyle(this.#toastElement);
     const marginBottom = parseInt(style.marginBottom);
+    this.#toastElement.classList.add("remove");
+
+    const animationPosition = {
+      "top-right": {
+        from: "translateX(0%)",
+        to: "translateX(calc(100% + 20px))",
+      },
+      "top-left": {
+        from: "translateX(0%)",
+        to: "translateX(calc(-100% - 20px))",
+      },
+      "top-center": {
+        from: "translateY(0%)",
+        to: "translateY(-100vh)",
+      },
+      "bottom-right": {
+        from: "translateX(0%)",
+        to: "translateX(calc(100% + 20px))",
+      },
+      "bottom-left": {
+        from: "translateX(0%)",
+        to: "translateX(calc(-100% - 20px))",
+      },
+      "bottom-center": {
+        from: "translateY(0%)",
+        to: "translateY(100vh)",
+      },
+    }[this.#options.position];
 
     const toastAnimation = this.#toastElement.animate(
-      [{ transform: "translateX(0%)" }, { transform: "translateX(200%)" }],
+      [
+        { transform: animationPosition.from },
+        { transform: animationPosition.to },
+      ],
       {
         duration: 500,
         fill: "forwards",
@@ -122,40 +199,114 @@ class Toast {
     );
 
     toastAnimation.addEventListener("finish", () => {
-      const next = this.#toastElement.nextElementSibling;
+      const isTop = this.#options.position.startsWith("top");
+      const next = isTop
+        ? this.#toastElement.nextElementSibling
+        : this.#toastElement.previousElementSibling;
+
+      this.#toastElement.classList.add("remove");
       if (next) {
-        next.style.marginTop = `${toastHeight + marginBottom}px`;
-        next.animate(
-          [
-            { marginTop: `${toastHeight + marginBottom}px` },
-            { marginTop: "0px" },
-          ],
-          {
-            duration: 100,
-            fill: "forwards",
-          }
-        );
+        const margin = isTop
+          ? `${toastHeight + marginBottom}px 0px 0px 0px`
+          : `0px 0px ${toastHeight + marginBottom * 2}px 0px`;
+        next.style.margin = margin;
+
+        next.animate([{ margin: margin }, { margin: "0px 0px 10px 0px" }], {
+          duration: 100,
+          fill: "forwards",
+        });
       }
       this.#toastElement.remove();
+      this.#checkIfContainerIsEmpty();
     });
   }
+  #checkIfContainerIsEmpty() {
+    const children = this.#parentContainer.childElementCount;
+
+    if (children === 0) {
+      this.#parentContainer.remove();
+    }
+  }
 }
+
+new Toast();
+
+new Toast("", {
+  autoClose: true,
+  closeOnClick: true,
+  position: "top-left",
+  theme: "dark",
+  state: "warning",
+});
 
 new Toast("This is awesome!😀", {
   autoClose: true,
   closeOnClick: true,
-  theme: "colored",
+  position: "top-left",
+  theme: "dark",
   state: "error",
 });
+
 new Toast("This is awesome!😀", {
   autoClose: true,
   closeOnClick: true,
-  theme: "colored",
-  state: "error",
+  position: "top-left",
+  theme: "dark",
+  state: "success",
 });
+
 new Toast("This is awesome!😀", {
   autoClose: true,
   closeOnClick: true,
+  position: "top-left",
+  theme: "dark",
+  state: "info",
+});
+
+new Toast("This is awesome!😀", {
+  autoClose: false,
+  closeOnClick: true,
+  position: "bottom-right",
+  theme: "light",
+  state: "warning",
+});
+
+new Toast("This is awesome!😀", {
+  autoClose: false,
+  closeOnClick: true,
+  position: "bottom-right",
+  theme: "light",
+  state: "error",
+});
+
+new Toast("This is awesome!😀", {
+  autoClose: true,
+  closeOnClick: true,
+  position: "top-right",
+  theme: "colored",
+  state: "success",
+});
+
+new Toast("This is awesome!😀", {
+  autoClose: true,
+  closeOnClick: true,
+  position: "top-center",
+  theme: "colored",
+  state: "info",
+});
+
+new Toast("This is awesome!😀", {
+  autoClose: true,
+  closeOnClick: true,
+  position: "bottom-center",
+  theme: "colored",
+  state: "error",
+});
+
+new Toast("This is awesome!😀", {
+  autoClose: true,
+  closeOnClick: true,
+  position: "bottom-left",
   theme: "colored",
   state: "warning",
 });

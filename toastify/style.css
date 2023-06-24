@@ -9,11 +9,41 @@ body {
   background-color: #1c1d22;
 }
 
-.toastify {
+/* Positions */
+.toast-container.top-right {
   position: fixed;
   top: 20px;
   right: 20px;
 }
+.toast-container.top-left {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+.toast-container.top-center {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toast-container.bottom-right {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.toast-container.bottom-left {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+.toast-container.bottom-center {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .toast {
   position: relative;
   padding: 20px;
@@ -27,6 +57,12 @@ body {
   border-radius: 5px;
   overflow: hidden;
   cursor: pointer;
+  z-index: 1000;
+  visibility: hidden;
+}
+
+.toast.remove {
+  z-index: 999;
 }
 
 /* Dark theme */
